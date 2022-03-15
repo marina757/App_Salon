@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use MVC\Router;
+use Classes\Email;
 use Model\Usuario;
 
 
@@ -50,6 +51,11 @@ class LoginController {
 
                    //Generar un token unico
                    $usuario->crearToken();
+                   
+
+                   //Enviar el Email
+                   $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
+                   debuguear($email);
                    debuguear($usuario);
                }
             }
