@@ -8,7 +8,9 @@
             type="text"
             name="nombre"
             id="nombre"
-            placeholder="Tu nombre">
+            placeholder="Tu nombre"
+            value="<?php echo s($usuario->nombre); ?>"
+            >
     </div>
 
     <div class="campo">
@@ -17,7 +19,9 @@
             type="text"
             name="apellido"
             id="apellido"
-            placeholder="Tu Apellido">
+            placeholder="Tu Apellido"
+            value="<?php echo s($usuario->apellido); ?>"
+            >
     </div>
 
     <div class="campo">
@@ -26,7 +30,9 @@
             type="tel"
             name="telefono"
             id="telefono"
-            placeholder="Tu telefono">
+            placeholder="Tu telefono"
+            value="<?php echo s($usuario->telefono); ?>"
+            >
     </div>
 
     <div class="campo">
@@ -35,7 +41,9 @@
             type="email"
             name="email"
             id="email"
-            placeholder="Tu E-mail">
+            placeholder="Tu E-mail"
+            value="<?php echo s($usuario->email); ?>"
+            >
     </div>
 
     <div class="campo">
