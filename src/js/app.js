@@ -23,6 +23,8 @@ function iniciarApp() {
     paginaAnterior();
 
     consultarAPI(); //Consultar la API en el backend de PHP 
+
+    nombreCliente();
 }
 
 function mostrarSeccion() {
@@ -157,11 +159,12 @@ function seleccionarServicio(servicio) {
         //agregarlo
         cita.servicios = [...servicios, servicio];
         divServicio.classList.add('seleccionado');
-    }
-
-  
-
-    
+    }    
     
     console.log(cita);
+}
+
+function nombreCliente() {
+    cita.nombre = document.querySelector('#nombre').value;
+     
 }
