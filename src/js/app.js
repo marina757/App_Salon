@@ -247,15 +247,13 @@ function mostrarResumen() {
     //Formatear el div de resumen
     const { nombre, fecha, hora, servicios } = cita;
 
-    const nombreCliente = document.createElement('P');
-    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+    //Heading para servicios en resumen
+    const headingServicios = document.createElement('H3');
+    headingServicios.textContent = 'Resumen de servicios';
+    resumen.appendChild(headingServicios);
 
-    const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
 
-    const horaCita = document.createElement('P');
-    horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
-
+    //Iterando y mostrando los servicios
     servicios.forEach(servicio => {
         const { id, precio, nombre } = servicio;
         const contenedorServicio = document.createElement('DIV');
@@ -271,7 +269,22 @@ function mostrarResumen() {
         contenedorServicio.appendChild(precioServicio);
 
         resumen.appendChild(contenedorServicio);
-    })
+    });
+
+    //Heading para cita en resumen
+    const headingCita = document.createElement('H3');
+    headingCita.textContent = 'Resumen de cita';
+    resumen.appendChild(headingCita);
+
+
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora} horas`; 
 
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
