@@ -280,8 +280,20 @@ function mostrarResumen() {
     const nombreCliente = document.createElement('P');
     nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
+    //Formatear la fecha en espanol
+    const fechaObj = new Date(fecha);
+    const mes = fechaObj.getMonth();
+    const dia = fechaObj.getDate();
+    const year = fechaObj.getFullYear();
+
+    const fechaUTC = new Date( Date.UTC(year, mes, dia));
+   
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+    const fechaFormateada = fechaUTC.toLocaleDateString('es-MX', opciones);
+    
+
     const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
 
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} horas`; 
