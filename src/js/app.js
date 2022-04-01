@@ -185,7 +185,7 @@ function seleccionarFecha() {
        
         if ( [6, 0].includes(dia)) {
             e.target.value = '';
-            mostrarAlerta('fines de semana no permitidos', 'error');
+            mostrarAlerta('fines de semana no permitidos', 'error', '.formulario');
         }else {
             cita.fecha = e.target.value;
         }
@@ -200,7 +200,7 @@ function seleccionarHora() {
         const hora = horaCita.split(":")[0];
         if (hora < 10 || hora > 18) {
             e.target.value = '';
-            mostrarAlerta('hora no valida', 'error');
+            mostrarAlerta('hora no valida', 'error', '.formulario');
         } else {
             cita.hora = e.target.value;
             console.log(cita);            
@@ -208,10 +208,12 @@ function seleccionarHora() {
     })
 }
 
-function mostrarAlerta(mensaje, tipo) {
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
     //Previene que se generen mas de 1 alerta
     const alertaPrevia = document.querySelector('.alerta');
-    if (alertaPrevia) return;
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
  
     //Scripting para crear la alerta
     const alerta = document.createElement('DIV');
@@ -219,21 +221,23 @@ function mostrarAlerta(mensaje, tipo) {
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
-    const formulario = document.querySelector('.formulario');
-    formulario.appendChild(alerta);
+    const referencia = document.querySelector(elemento);
+    referencia.appendChild(alerta);
 
-    //Eliminar la alerta
-    setTimeout(() => {
-        alerta.remove();
-    }, 3000);
+    if (desaparece) {
+        //Eliminar la alerta
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000); 
+    }
 }
 
 function mostrarResumen() {
     const resumen = document.querySelector('.contenido-resumen');
 
-    console.log(cita.servicios.length);
-    if (Object.values(cita).includes('') ) {
-        console.log('hacen falta datos');
+    
+    if (Object.values(cita).includes('') || cita.servicios.length === 0) {
+        mostrarAlerta('faltan datos de servicios, fecha u hora', 'error', '.contenido-resumen', false);
     }else {
         console.log('todo bien');
     }
