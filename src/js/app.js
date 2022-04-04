@@ -169,7 +169,7 @@ function seleccionarServicio(servicio) {
         divServicio.classList.add('seleccionado');
     }    
     
-    console.log(cita);
+    //console.log(cita);
 }
 
 function nombreCliente() {
@@ -203,7 +203,7 @@ function seleccionarHora() {
             mostrarAlerta('hora no valida', 'error', '.formulario');
         } else {
             cita.hora = e.target.value;
-            console.log(cita);            
+            //console.log(cita);            
         }
     })
 }
@@ -315,12 +315,14 @@ async function reservarCita() {
     
     const datos = new FormData();
     datos.append('nombre', 'Marina');
+    datos.append('edad', 20);
 
     //peticion hacia la api
     const url = 'http://localhost:3000/api/citas'
 
     const respuesta = await fetch(url, {
-        method: 'POST'
+        method: 'POST',
+        body: datos
     });
 
     const resultado = await respuesta.json();
