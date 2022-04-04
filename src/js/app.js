@@ -312,5 +312,10 @@ function mostrarResumen() {
 }
 
 function reservarCita() {
-    console.log('resrevando cita');
+    
+    const datos = new FormData();
+    datos.append('nombre', 'Marina');
+
+    
+    //console.log([...datos]);
 }
