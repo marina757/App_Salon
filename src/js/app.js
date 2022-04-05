@@ -3,6 +3,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -23,6 +24,8 @@ function iniciarApp() {
     paginaAnterior();
 
     consultarAPI(); //Consultar la API en el backend de PHP 
+
+    idCliente();
 
     nombreCliente(); //anade el nombre del cliente al objeto de cita
 
@@ -172,6 +175,10 @@ function seleccionarServicio(servicio) {
     //console.log(cita);
 }
 
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
+}
+
 function nombreCliente() {
     cita.nombre = document.querySelector('#nombre').value;
      
@@ -313,22 +320,23 @@ function mostrarResumen() {
 
 async function reservarCita() {
 
-    const { nombre, fecha, hora, servicios } = cita;
+    const { nombre, fecha, hora, servicios, id } = cita;
 
     const idServicios = servicios.map( servicio => servicio.id );
     //console.log(idServicios);
     //return;
 
     const datos = new FormData();
-    datos.append('nombre', nombre);
+   
     datos.append('fecha', fecha);
     datos.append('hora', hora);
+    datos.append('clienteId', id);
     datos.append('servicios', idServicios);
 
 
     //console.log([...datos]);
-    
-
+    try {
+        
     //peticion hacia la api
     const url = 'http://localhost:3000/api/citas'
 
@@ -338,7 +346,28 @@ async function reservarCita() {
     });
 
     const resultado = await respuesta.json();
-    console.log(resultado);
+    console.log(resultado.resultado);
 
     //console.log([...datos]);
+
+    if (resultado.resultado) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Cita creada',
+            text: 'Tu cita fue creada correctamente!',
+            button: 'OK'
+          }).then( () => {
+              setTimeout(() => {
+                window.location.reload(); 
+              }, 3000);
+              
+          })
+    }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al guardar la cita',
+          })
+    }
 }
