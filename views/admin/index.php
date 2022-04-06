@@ -34,7 +34,7 @@ include_once __DIR__ . '/../templates/barra.php'
                 $idCita = $cita->id;
             } //fin de if ?>
             <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
-                </li>
+                
             <?php } //fin de foreach
             ?>
     </ul>
