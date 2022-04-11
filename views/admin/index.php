@@ -55,7 +55,10 @@ include_once __DIR__ . '/../templates/barra.php'
                     <p class="total">Total: <span>$ <?php echo $total; ?></span></p>
             <?php   }
             
-            } //fin de foreach ?> 
-        
+            } //fin de foreach ?>         
     </ul>
 </div>
+
+<?php
+    $script = "<script src='build/js/buscador.js'></script>"
+?>
