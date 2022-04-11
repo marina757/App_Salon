@@ -9,7 +9,12 @@ include_once __DIR__ . '/../templates/barra.php'
     <form class="formulario">
         <div class="campo">
             <label for="fecha">Fecha</label>
-            <input type="date" id="fecha" name="fecha">
+            <input 
+            type="date"
+             id="fecha" 
+             name="fecha"
+             value="<?php echo $fecha; ?>"
+             >
         </div>
     </form>
 </div>
